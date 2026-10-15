@@ -1,0 +1,31 @@
+/* Toneriko のテーマの縹(ライト #26739f / ダーク #6fabd2)をブランドの色にする */
+:root {
+	--vp-c-brand-1: #26739f;
+	--vp-c-brand-2: #2f84b5;
+	--vp-c-brand-3: #26739f;
+	--vp-c-brand-soft: rgb(38 115 159 / 0.14);
+}
+.dark {
+	--vp-c-bg: #171f25;
+	--vp-c-bg-alt: #121a1f;
+	--vp-c-bg-elv: #1d262d;
+	--vp-c-bg-soft: #1d262d;
+	--vp-c-brand-1: #6fabd2;
+	--vp-c-brand-2: #8bbcdc;
+	--vp-c-brand-3: #4f93bf;
+	--vp-c-brand-soft: rgb(111 171 210 / 0.16);
+}
+.endpoint-meta code {
+	font-size: 0.95em;
+	padding: 4px 10px;
+}
+.required {
+	margin-left: 6px;
+	padding: 0 6px;
+	border-radius: 4px;
+	font-size: 12px;
+	font-weight: 600;
+	color: var(--vp-c-warning-1);
+	background: var(--vp-c-warning-soft);
+	white-space: nowrap;
+}
