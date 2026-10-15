@@ -29,3 +29,7 @@
 	background: var(--vp-c-warning-soft);
 	white-space: nowrap;
 }
+/* 表の 1 列目は名前なので折り返さない */
+.vp-doc td:first-child {
+	white-space: nowrap;
+}

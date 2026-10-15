@@ -13,13 +13,34 @@ export default defineConfig({
 	themeConfig: {
 		logo: '/toneriko-icon.svg',
 		nav: [
-			{ text: '利用者', link: '/users/' },
-			{ text: '管理者', link: '/admin/' },
-			{ text: 'API', link: '/api/' },
+			{ text: '使い方', link: '/users/' },
+			{ text: 'サーバーの運用', link: '/admin/' },
 			{ text: 'Misskey との違い', link: '/compat/' },
-			{ text: '開発', link: '/dev/' },
+			{
+				text: '開発者向け',
+				items: [
+					{ text: 'API と Bot', link: '/api/' },
+					{ text: '本体の開発', link: '/dev/' },
+					{ text: 'Toneriko Script', link: 'https://github.com/toneriko-dev/toneriko-script' },
+				],
+			},
 		],
 		sidebar: {
+			'/users/': [
+				{
+					text: '使い方',
+					items: [
+						{ text: 'はじめに', link: '/users/' },
+						{ text: 'タイムライン', link: '/users/timelines' },
+						{ text: 'ノートを書く', link: '/users/notes' },
+						{ text: 'リアクション', link: '/users/reactions' },
+						{ text: 'ドライブ', link: '/users/drive' },
+						{ text: 'MFM', link: '/users/mfm' },
+						{ text: 'アカウントの安全', link: '/users/security' },
+						{ text: 'データと引っ越し', link: '/users/moving' },
+					],
+				},
+			],
 			'/api/': apiSidebar(),
 		},
 		socialLinks: [{ icon: 'github', link: 'https://github.com/toneriko-dev/toneriko' }],
