@@ -30,7 +30,8 @@ function search() {
 		const list = await Promise.all(found.results.slice(0, 8).map(async (r: any) => {
 			const data = await r.data();
 			// 見出しのアンカー用のゼロ幅スペースが題に残るので取り除く
-			return { url: withBase(data.url), title: data.meta.title.replace(/\u200b/g, '').trim(), excerpt: data.excerpt };
+			// Pagefind の URL は索引の置き場所を含むので、base を重ねない。cleanUrls に合わせて .html を外す。
+			return { url: data.url.replace(/\.html$/, ''), title: data.meta.title.replace(/\u200b/g, '').trim(), excerpt: data.excerpt };
 		}));
 		// エンドポイントの名前で引いたときは、そのページを先頭に出す。Pagefind は notes/create を notes と create に分けて探すため。
 		const exact = withBase(`/api/endpoints/${q}`);
