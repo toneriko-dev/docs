@@ -1,5 +1,5 @@
 import { defineConfig } from 'vitepress';
-import { apiSidebar, endpoints, tonerikoRef } from './api.mjs';
+import { apiSidebar, endpoints, schemas, tonerikoRef } from './api.mjs';
 
 // GitHub Pages ではリポジトリの名前の下に置かれるので、ビルドのときに DOCS_BASE で場所を渡す。
 export default defineConfig({
@@ -11,7 +11,9 @@ export default defineConfig({
 	lastUpdated: true,
 	head: [['link', { rel: 'icon', href: `${process.env.DOCS_BASE ?? '/'}toneriko-icon.svg` }]],
 	themeConfig: {
-		logo: '/toneriko-icon.svg',
+		// 上の帯の左端は theme/NavTitle.vue が描く
+		siteTitle: false,
+		tk: { endpoints: endpoints.length, schemas: Object.keys(schemas).length, ref: tonerikoRef },
 		nav: [
 			{ text: '使い方', link: '/users/' },
 			{ text: 'サーバーの運用', link: '/admin/' },

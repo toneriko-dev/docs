@@ -116,7 +116,7 @@ export function endpointPage(e) {
 	const lines = [
 		`# ${e.name}`,
 		'',
-		`<div class="endpoint-meta"><code>${e.methods.join(' / ')} /api/${e.name}</code></div>`,
+		`<div class="endpoint-meta"><span class="method">${e.methods.join(' / ')}</span><code>/api/${e.name}</code></div>`,
 		'',
 		'::: v-pre',
 		summary ?? '説明はまだありません。',

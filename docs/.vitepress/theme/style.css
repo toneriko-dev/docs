@@ -1,35 +1,182 @@
-/* Toneriko のテーマの縹(ライト #26739f / ダーク #6fabd2)をブランドの色にする */
+/*
+ * 色は本体の Toneriko テーマ (l-toneriko / d-toneriko) の値を使う。アクセントは縹 (ライト #26739f / ダーク #6fabd2)、
+ * 地と線はアクセントと同じ色相の灰色。余白と文字の大きさは本体と同じ黄金比の刻み (3/5/8/13/21/34/55/89px、文字は φ の 4 乗根刻みの rem)。
+ */
 :root {
+	--vp-font-family-base: 'IBM Plex Sans JP', 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+	--vp-font-family-mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace; /* taste-skill-ignore: コードの書体 */
+
+	--vp-c-bg: #f7fbfe;
+	--vp-c-bg-alt: #ebf1f6;
+	--vp-c-bg-elv: #ffffff;
+	--vp-c-bg-soft: #e5ecf1;
+	--vp-c-divider: #d1dbe1;
+	--vp-c-gutter: #d1dbe1;
+	--vp-c-border: #c2ced5;
+	--vp-c-text-1: #354047;
+	--vp-c-text-2: #56626a;
+	--vp-c-text-3: #66727a;
+	--vp-c-default-soft: rgb(38 115 159 / 0.07);
+
 	--vp-c-brand-1: #26739f;
-	--vp-c-brand-2: #2f84b5;
+	--vp-c-brand-2: #1f6690;
 	--vp-c-brand-3: #26739f;
-	--vp-c-brand-soft: rgb(38 115 159 / 0.14);
+	--vp-c-brand-soft: rgb(38 115 159 / 0.12);
+
+	--tk-fg-strong: #1d282f;
+	--tk-fg-on-brand: #ffffff;
+	--tk-mark-soft: #d7e4ec;
+
+	--vp-nav-height: 56px;
+	--vp-nav-bg-color: var(--vp-c-bg);
+	--vp-sidebar-bg-color: var(--vp-c-bg-alt);
+	--vp-code-bg: rgb(38 115 159 / 0.08);
+	--vp-code-color: #1f5f86;
+	--vp-code-block-bg: #eef3f7;
+	--vp-code-font-size: 0.887em;
+	--vp-button-brand-bg: var(--vp-c-brand-1);
+	--vp-home-hero-name-color: var(--vp-c-brand-1);
 }
+
 .dark {
 	--vp-c-bg: #171f25;
-	--vp-c-bg-alt: #121a1f;
-	--vp-c-bg-elv: #1d262d;
-	--vp-c-bg-soft: #1d262d;
+	--vp-c-bg-alt: #1b2329;
+	--vp-c-bg-elv: #283036;
+	--vp-c-bg-soft: #20282e;
+	--vp-c-divider: #2c373e;
+	--vp-c-gutter: #10181e;
+	--vp-c-border: #343f46;
+	--vp-c-text-1: #c1cbd1;
+	--vp-c-text-2: #95a1a9;
+	--vp-c-text-3: #85919a;
+	--vp-c-default-soft: rgb(111 171 210 / 0.08);
+
 	--vp-c-brand-1: #6fabd2;
 	--vp-c-brand-2: #8bbcdc;
 	--vp-c-brand-3: #4f93bf;
 	--vp-c-brand-soft: rgb(111 171 210 / 0.16);
+
+	--tk-fg-strong: #ebf1f5;
+	--tk-fg-on-brand: #0f171d;
+	--tk-mark-soft: #20303b;
+
+	--vp-code-bg: rgb(111 171 210 / 0.1);
+	--vp-code-color: #9cc6e2;
+	--vp-code-block-bg: #10181e;
 }
-.endpoint-meta code {
-	font-size: 0.95em;
-	padding: 4px 10px;
+
+html {
+	line-break: strict;
 }
+/* 見出しは文節の切れ目で折り返す */
+h1, h2, h3 { word-break: auto-phrase; }
+html {
+	-webkit-font-smoothing: antialiased;
+}
+
+::selection { background: var(--vp-c-brand-soft); }
+
+/* 上の帯: 線を引かず、地より一段濃い面で分ける */
+.VPNavBar, .VPNavBar .content-body, .VPNavBar .title { background: var(--vp-c-bg-alt) !important; }
+.VPNavBar .divider-line, .VPNavBar .divider, .VPNavBarExtra::before, .VPNavBarAppearance::before, .VPNavBarSocialLinks::before { display: none !important; }
+.VPLocalNav { background: var(--vp-c-bg-alt) !important; border-bottom: none !important; }
+.VPNavBarTitle .title { border-bottom: none !important; }
+.VPNavBarMenuLink, .VPNavBarMenuGroup .button { font-size: 14px !important; font-weight: 500 !important; color: var(--vp-c-text-2) !important; }
+.VPNavBarMenuLink:hover, .VPNavBarMenuGroup .button:hover, .VPNavBarMenuLink.active { color: var(--tk-fg-strong) !important; }
+.VPNavBarMenuLink.active { color: var(--vp-c-brand-1) !important; font-weight: 700 !important; }
+.VPSwitchAppearance { border-radius: 4px !important; }
+.VPSwitchAppearance .check { border-radius: 3px !important; }
+.VPMenu { border-radius: 6px !important; }
+.VPMenuLink .link { border-radius: 4px !important; }
+
+/* サイドバー: 線を引かず、いまのページは塗りで示す */
+.VPSidebar .group + .group { border-top: none !important; }
+.VPSidebarItem.level-0 > .item .text { font-size: 14px; font-weight: 700; color: var(--tk-fg-strong); }
+.VPSidebarItem.level-1 .text { font-size: 14px; color: var(--vp-c-text-2); }
+.VPSidebarItem.level-1 .link:hover .text { color: var(--tk-fg-strong); }
+.VPSidebarItem.level-1 > .item { padding: 0 8px; margin-left: -8px; border-radius: 4px; }
+.VPSidebarItem.level-1.is-active > .item { background: var(--vp-c-brand-soft); }
+/* 塗りの上の文字は brand-2 にして、コントラスト比 4.5 以上を保つ */
+.VPSidebarItem.level-1.is-active > .item > .link .text { color: var(--vp-c-brand-2) !important; font-weight: 700; }
+.VPSidebarItem .indicator { display: none; }
+.VPSidebarItem .items { border-left: none !important; padding-left: 0 !important; }
+.VPSidebarItem.level-0.collapsible > .item .text { font-weight: 500; color: var(--vp-c-text-2); }
+
+/* 本文 */
+.vp-doc { font-size: 1rem; line-height: 1.85; }
+.vp-doc p, .vp-doc li { line-height: 1.85; }
+.vp-doc h1, .vp-doc h2, .vp-doc h3, .vp-doc h4 { color: var(--tk-fg-strong); font-feature-settings: 'palt'; letter-spacing: 0.01em; }
+.vp-doc h1 { font-size: 2.058rem; line-height: 1.382; font-weight: 700; margin-bottom: 21px; }
+.vp-doc h2 { margin: 72px 0 13px; padding-top: 0; border-top: none; font-size: 1.434rem; line-height: 1.5; font-weight: 700; }
+.vp-doc h3 { margin: 34px 0 8px; font-size: 1.128rem; font-weight: 700; }
+.vp-doc h1 + p, .tk-lead { font-size: 1.128rem; color: var(--vp-c-text-2); }
+.vp-doc strong { color: var(--tk-fg-strong); font-weight: 700; }
+.vp-doc a {
+	color: var(--vp-c-brand-1); font-weight: 500; text-decoration: underline;
+	text-decoration-color: color-mix(in srgb, var(--vp-c-brand-1) 35%, transparent); text-underline-offset: 4px;
+}
+.vp-doc a:hover { color: var(--vp-c-brand-2); text-decoration-color: currentColor; }
+.vp-doc .header-anchor { text-decoration: none; color: var(--vp-c-text-3); }
+.vp-doc ul > li::marker { color: var(--vp-c-text-3); }
+.vp-doc ol > li::marker { color: var(--vp-c-brand-1); font-weight: 700; }
+.vp-doc :not(pre) > code { padding: 2px 5px; border-radius: 3px; font-weight: 500; }
+.vp-doc kbd { padding: 1px 6px; border-radius: 3px; font-size: 0.887em; background: var(--vp-c-bg-soft); }
+
+/* 表: 罫線は横だけ。縞模様にしない */
+.vp-doc table { border-collapse: collapse; font-size: 0.887rem; margin: 21px 0; }
+.vp-doc tr, .vp-doc tr:nth-child(2n) { background: transparent; border-top: none; }
+.vp-doc th, .vp-doc td { border: none; border-bottom: 1px solid var(--vp-c-divider); padding: 8px 21px 8px 0; line-height: 1.7; }
+.vp-doc th { background: transparent; border-bottom: 1px solid var(--vp-c-border); font-size: 12px; font-weight: 500; color: var(--vp-c-text-3); letter-spacing: 0.04em; }
+.vp-doc td:first-child { white-space: nowrap; color: var(--tk-fg-strong); font-weight: 500; }
+
+/* コードの枠 */
+.vp-doc div[class*='language-'] { border-radius: 4px; }
+
+/* 注意書きの枠: 左の線と薄い地。種類ごとの色は VitePress の色を使う */
+.custom-block { border-radius: 4px; border: none; border-left: 3px solid; padding: 13px 21px; font-size: 0.94rem; }
+.custom-block.tip { border-left-color: var(--vp-c-brand-1); background: var(--vp-c-default-soft); }
+.custom-block.info { border-left-color: var(--vp-c-text-3); background: var(--vp-c-default-soft); }
+.custom-block.warning { border-left-color: var(--vp-c-warning-1); }
+.custom-block.danger { border-left-color: var(--vp-c-danger-1); }
+.custom-block .custom-block-title { font-weight: 700; }
+
+/* 右の目次: 線を引かず、いま読んでいる見出しは色と太さで示す */
+.VPDocAsideOutline .outline-title { font-size: 14px !important; font-weight: 700 !important; color: var(--tk-fg-strong) !important; }
+.VPDocAsideOutline .outline-link { font-size: 13px !important; }
+.VPDocAsideOutline .outline-link.active { color: var(--vp-c-brand-1) !important; font-weight: 700; }
+.VPDocAsideOutline .content { border-left: none !important; padding-left: 0 !important; }
+.VPDocAsideOutline .outline-marker { display: none !important; }
+
+/* ページ下の前後のリンク: 枠線でなく塗った面 */
+.VPDocFooter .prev-next { border-top: none !important; }
+.VPDocFooter .edit-info { border-bottom: none !important; }
+.VPDocFooter .pager-link { border: none !important; border-radius: 4px !important; background: var(--vp-c-bg-alt); }
+.VPDocFooter .pager-link:hover { background: var(--vp-c-bg-soft); }
+.VPDocFooter .pager-link .title { font-weight: 700 !important; }
+.VPDocFooter .edit-link-button { font-weight: 500 !important; }
+.VPFooter { border-top: none !important; background: var(--vp-c-bg-alt) !important; }
+.VPFooter .message, .VPFooter .copyright { font-size: 13px !important; color: var(--vp-c-text-2) !important; }
+
+/* トップページは自前の部品で組むので、ページの外枠の余白を消す */
+.VPPage:has(.tk-home) { padding: 0 !important; }
+
+/* API のページ */
+.endpoint-meta { display: inline-flex; align-items: stretch; margin: 0 0 21px; border-radius: 4px; overflow: hidden; font-family: var(--vp-font-family-mono); font-size: 0.887rem; } /* taste-skill-ignore: HTTP のメソッドとパスはコード */
+.endpoint-meta .method { padding: 3px 10px; background: var(--vp-c-brand-1); color: var(--tk-fg-on-brand); font-weight: 500; }
+.endpoint-meta code { padding: 3px 10px !important; background: var(--vp-c-bg-soft) !important; color: var(--tk-fg-strong) !important; font-size: 1em !important; border-radius: 0 !important; }
 .required {
-	margin-left: 6px;
-	padding: 0 6px;
-	border-radius: 4px;
-	font-size: 12px;
-	font-weight: 600;
-	color: var(--vp-c-warning-1);
-	background: var(--vp-c-warning-soft);
-	white-space: nowrap;
+	margin-left: 6px; padding: 0 5px; border-radius: 3px; font-size: 11px; font-weight: 500;
+	color: var(--vp-c-warning-1); background: var(--vp-c-warning-soft); white-space: nowrap;
 }
-/* 表の 1 列目は名前なので折り返さない */
-.vp-doc td:first-child {
-	white-space: nowrap;
+
+/* 768〜1099px では上の帯にメニューと検索欄が並びきらないので、スマホと同じメニューのボタンにまとめる */
+@media (min-width: 768px) and (max-width: 1099px) {
+	.VPNavBarMenu, .VPNavBarExtra { display: none !important; }
+	.VPNavBarHamburger { display: flex !important; }
+	.VPNavScreen { display: block !important; }
+	.tk-title-docs { display: none; }
 }
+
+/* メニューの画面も線で区切らない */
+.VPNavScreenMenuLink, .VPNavScreenMenuGroup { border-bottom: none !important; }
+.VPNavScreenMenuGroup.open { padding-bottom: 8px; }
